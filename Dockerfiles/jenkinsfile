@@ -4,10 +4,19 @@ import hudson.model.*
 import jenkins.*
 import jenkins.model.*
 
+def pipelineName
+def pipelinePath
+def pipelineType
+def gitURL
+
 node('master'){
 	stage('readProperties'){
 		def envs = readProperties  file: "${WORKSPACE}/../properties/config.properties"
 		echo "envs: ${envs}"
+		pipelineName = envs.pipelineName
+		pipelinePath = envs.pipelinePath
+		pipelineType = envs.pipelineType
+		gitURL = envs.gitURL
 	}
 }
 node('docker-slave'){
