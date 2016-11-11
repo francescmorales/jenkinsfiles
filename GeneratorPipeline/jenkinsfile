@@ -1,0 +1,21 @@
+#!groovy
+import hudson.*
+import hudson.model.*
+import jenkins.*
+import jenkins.model.*
+
+node {
+    stage('Form'){
+		echo "Parameters for the pipeline:"
+		echo "Type: ${pipelineType}"
+		echo "Name: ${pipelineName}"
+		echo "Path: ${pipelinePath}"
+		echo "Git URL: ${gitURL}"
+    }
+    stage('Validate Form'){
+    }
+    stage('Generate pipeline'){
+		git url: "ssh://git@192.168.99.100:7999/ci/pipeline-generator.git", branch: 'develop', credentials: "2abfdf7f-4945-4d12-b760-e1e1da6dc8a7"
+		jobDsl targets: 'generator.groovy'
+    }
+}

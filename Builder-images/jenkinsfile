@@ -1,0 +1,18 @@
+#!groovy
+import hudson.*
+import hudson.model.*
+import jenkins.*
+import jenkins.model.*
+
+node('docker-slave'){
+    stage('Clone_Git'){
+		git url: "http://admin@192.168.99.100:7990/scm/im/basic-image-builder.git", branch: 'develop'
+    }
+    stage('Build'){
+        sh 'docker build -t docker-virtual.art.local/basic-image-builder /home/jenkins/workspace/Builders/basic-image-builder'
+    }
+    stage('Deploy_Artifact'){
+		sh 'docker login -u admin -p password docker-virtual.art.local'
+		sh 'docker push docker-virtual.art.local/basic-image-builder'
+    }
+}
