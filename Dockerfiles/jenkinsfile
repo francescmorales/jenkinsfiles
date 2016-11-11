@@ -6,7 +6,9 @@ import jenkins.model.*
 
 node('docker-slave'){
     stage('Clone_Git'){
-		git url: "${gitURL}", branch: 'develop'
+		def envs = readProperties  file: "${WORKSPACE}/../properties/config.properties"
+		echo "envs: ${envs}"
+		git url: "${envs.gitURL}", branch: 'develop'
     }
     stage('Build'){
         sh 'docker build -t test /home/jenkins/workspace/Dockerfiles/docker-file-test'
