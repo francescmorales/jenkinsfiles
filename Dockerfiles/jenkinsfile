@@ -9,7 +9,7 @@ node('docker-slave'){
 		git url: "${gitURL}", branch: 'develop'
     }
     stage('Build'){
-        sh 'docker build -t test /home/jenkins/workspace/Docker\files/docker-file-test'
+        sh 'docker build -t test /home/jenkins/workspace/Dockerfiles/docker-file-test'
     }
     stage('Deploy_Artifact'){
 		//sh 'docker login -u admin -p password docker-virtual.art.local'
