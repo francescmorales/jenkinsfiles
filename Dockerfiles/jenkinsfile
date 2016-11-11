@@ -8,6 +8,7 @@ def pipelineName
 def pipelinePath
 def pipelineType
 def gitURL
+def slavePath
 
 node('master'){
 	stage('readProperties'){
@@ -17,6 +18,7 @@ node('master'){
 		pipelinePath = envs.pipelinePath
 		pipelineType = envs.pipelineType
 		gitURL = envs.gitURL
+		slavePath = envs.slavePath
 	}
 }
 node('docker-slave'){
@@ -24,7 +26,7 @@ node('docker-slave'){
 		git url: "${gitURL}", branch: 'develop'
     }
     stage('Build'){
-        sh 'docker build -t test /home/jenkins/workspace/Dockerfiles/docker-file-test'
+        sh 'docker build -t test ${slavePath}'
     }
     stage('Deploy_Artifact'){
 		//sh 'docker login -u admin -p password docker-virtual.art.local'
