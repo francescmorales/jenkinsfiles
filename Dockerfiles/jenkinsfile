@@ -21,7 +21,7 @@ node('master'){
 }
 node('docker-slave'){
     stage('Clone_Git'){
-		git url: "${envs.gitURL}", branch: 'develop'
+		git url: "${gitURL}", branch: 'develop'
     }
     stage('Build'){
         sh 'docker build -t test /home/jenkins/workspace/Dockerfiles/docker-file-test'
