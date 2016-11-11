@@ -4,10 +4,15 @@ import hudson.model.*
 import jenkins.*
 import jenkins.model.*
 
-node('docker-slave'){
-    stage('Clone_Git'){
+node('master'){
+	stage('readProperties'){
 		def envs = readProperties  file: "${WORKSPACE}/../properties/config.properties"
 		echo "envs: ${envs}"
+	
+	}
+}
+node(envs.node){
+    stage('Clone_Git'){
 		git url: "${envs.gitURL}", branch: 'develop'
     }
     stage('Build'){
