@@ -4,12 +4,14 @@ import hudson.model.*
 import jenkins.*
 import jenkins.model.*
 
-node('maven-image-builder') {
+node {
     stage('Prepare'){
 		def envs = readProperties  file: "${WORKSPACE}/../properties/config.properties"
 		echo "envs: ${envs}"
 		checkout([$class: 'GitSCM', branches: [[name: 'develop']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: "${envs.gitURL}"]]])
     }
+}
+node('maven-image-builder') {
     stage('Compile') {
         sh '''
         mvn clean install'''
