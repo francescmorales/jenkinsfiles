@@ -4,9 +4,10 @@ import hudson.model.*
 import jenkins.*
 import jenkins.model.*
 
+def envs
 node {
     stage('Prepare'){
-		def envs = readProperties  file: "${WORKSPACE}/../properties/config.properties"
+		envs = readProperties  file: "${WORKSPACE}/../properties/config.properties"
 		echo "envs: ${envs}"
     }
 }
