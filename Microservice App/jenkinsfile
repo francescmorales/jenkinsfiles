@@ -18,7 +18,7 @@ node('maven-image-builder') {
         mvn clean install'''
     }
     stage('QA_Sonar'){
-        echo 'Hello World'     
+        echo 'Pending'     
     }
     stage('Deploy_Artifact'){
         sh '''

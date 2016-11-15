@@ -11,16 +11,15 @@ node {
 		git url: "${envs.gitURL}", branch: '*/develop'
     }
     stage('Unit_test'){
-        echo 'Hello World'
-        sh 'ls'
+        echo 'Pending'
     }
     stage('QA_Sonar'){
-        echo 'Hello World'     
+        echo 'Pending'     
     }
     stage('Deploy_Artifact'){
-        echo 'Hello World'     
+        echo 'Pending'     
     }
     stage('Deploy_to_Dev'){
-        echo 'Hello World'     
+        echo 'Pending'     
     }
 }

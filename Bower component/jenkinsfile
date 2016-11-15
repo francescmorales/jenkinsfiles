@@ -11,16 +11,16 @@ node {
 		checkout([$class: 'GitSCM', branches: [[name: '*/develop']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: "${envs.gitURL}"]]])
     }
     stage('Unit_test'){
-        echo 'Hello World'
+        echo 'Pending'
         sh 'ls'
     }
     stage('QA_Sonar'){
-        echo 'Hello World'     
+        echo 'Pending'     
     }
     stage('Deploy_Artifact'){
-        echo 'Hello World'     
+        echo 'Pending'     
     }
     stage('Deploy_to_Dev'){
-        echo 'Hello World'     
+        echo 'Pending'     
     }
 }
